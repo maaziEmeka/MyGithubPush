@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { MdMenu } from "react-icons/md";
 import NavHolder from "../component/NavHolder";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -18,16 +19,16 @@ const Header = () => {
         <Nav>
           <ul>
             <li>
-              <a href="#">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="#">About</a>
+              <Link to="/about">About</Link>
             </li>
             <li>
-              <a href="#">Service</a>
+              <Link to="/services">Services</Link>
             </li>
             <li>
-              <a href="#">Contact</a>
+              <Link to="/contact">Contact</Link>
             </li>
           </ul>
         </Nav>
@@ -84,7 +85,7 @@ const Nav = styled.nav`
     display: none;
   }
 
-ul {
+ul{
     display: flex;
     align-items: center;
     list-style: none;
@@ -95,6 +96,11 @@ ul {
     &:hover {
       color: orange;
     }
+
+    &:active {
+      color: orange;
+    }
+
   }
 
   a {

@@ -1,21 +1,22 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { NavLink, Link } from "react-router-dom";
 
 const NavHolder = () => {
   return (
     <Nav>
       <Ul>
         <Li>
-          <A href="#">Home</A>
+          <Navlink to="/">Home</Navlink>
         </Li>
         <Li>
-          <A href="#">About</A>
+          <Navlink to="/about">About</Navlink>
         </Li>
         <Li>
-          <A href="#">Service</A>
+          <Navlink to="/services">Services</Navlink>
         </Li>
         <Li>
-          <A href="#">Contact</A>
+          <Navlink to="/contact">Contact</Navlink>
         </Li>
       </Ul>
       <ButtonContainer>
@@ -60,9 +61,15 @@ const Li = styled.li`
     color: orange;
     transition: all 300ms ease-in-out;
   }
+  &:active {
+    color: orange;
+  }
+  &:focus {
+    color: orange;
+  }
 `;
 
-const A = styled.a`
+const Navlink = styled(Link)`
   text-decoration: none;
   color: inherit;
 `;
