@@ -1,105 +1,153 @@
-import React from "react";
 import styled from "@emotion/styled";
+import { useState } from "react";
+import { MdMenu } from "react-icons/md";
+import NavHolder from "../component/NavHolder";
 
 const Header = () => {
+  const [showMenu, setShowMenu] = useState(false);
+
+  const handleMenu = () => {
+    setShowMenu(!showMenu);
+    console.log(showMenu);
+  };
+
   return (
-    <Container>
-      <Holder>
-        <Logo>
-          <h1>Bottle</h1>
-        </Logo>
-        <Navs>
-          <Ul>
+    <HeaderContainer>
+      <HeaderContent>
+        <Logo>Bottle</Logo>
+        <Nav>
+          <ul>
             <li>
-              <A href="#">Home</A>
+              <a href="#">Home</a>
             </li>
             <li>
-              <A href="#">About</A>
+              <a href="#">About</a>
             </li>
             <li>
-              <A href="#">Services</A>
+              <a href="#">Service</a>
             </li>
             <li>
-              <A href="#">Contact</A>
+              <a href="#">Contact</a>
             </li>
-          </Ul>
-        </Navs>
-        <Button>
-          <ButtonOne>Login</ButtonOne>
-          <ButtonTwo>Register</ButtonTwo>
-        </Button>
-      </Holder>
-    </Container>
+          </ul>
+        </Nav>
+
+        <MobileNav>
+          <Button>login</Button>
+          <OrangeButton>Register</OrangeButton>
+        </MobileNav>
+        <MobileMenu onClick={handleMenu}>
+          <MdMenu />
+        </MobileMenu>
+      </HeaderContent>
+      {showMenu && <NavHolder />}
+    </HeaderContainer>
   );
 };
 
 export default Header;
 
-const ButtonTwo = styled.button`
+const HeaderContainer = styled.div`
+  background-color: black;
+  color: white;
+  height: 70px;
+  width: 100%;
+`;
+
+const HeaderContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  @media (min-width: 640px) {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+`;
+
+const Logo = styled.div`
+  font-size: 35px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    color: orange;
+  }
+`;
+
+const Nav = styled.nav`
+ @media (max-width: 767.98px) {
+    display: none;
+  }
+
+ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 30px;
+  }
+  li {
+    transition: color 0.3s ease-in-out;
+    &:hover {
+      color: orange;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  color: inherit;
+  }
+
+}
+
+  
+`;
+
+const MobileNav = styled.nav`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  @media (max-width: 767.98px) {
+    display: none;
+  }
+`;
+
+const MobileMenu = styled.div`
+  display: none;
+  @media (max-width: 767.98px) {
+    display: block;
+    cursor: pointer;
+  }
+`;
+
+const Button = styled.button`
+  padding: 4px 20px;
+  background-color: black;
+  border: 1px solid orange;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
+`;
+
+const OrangeButton = styled(Button)`
   margin-left: 10px;
   padding: 4px 20px;
   background-color: orange;
   color: black;
   border: none;
   border-radius: 50px;
-`;
-const ButtonOne = styled.button`
-  padding: 4px 20px;
-  background-color: black;
-  border: 1px solid orange;
-  border-radius: 50px;
-  color: white;
-`;
-const Button = styled.div`
-  width: 200px;
-  height: 40%;
-`;
-const A = styled.div`
-  color: white;
-  :hover {
-    color: orange;
-    transition: all 300ms eased-in-out;
-  }
-`;
-const Ul = styled.div`
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  justify-content: space-between;
-  gap: 30px;
-  list-style: none;
-`;
-const Navs = styled.div`
-  width: 300px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  text-decoration: none;
-`;
-const Logo = styled.div`
-  font-weight: bold;
   cursor: pointer;
-  :hover {
-    color: orange;
-    transition: all 300ms eased-in-out;
+
+  &:hover {
+    background-color: #ffbdbd;
   }
-`;
-const Holder = styled.div`
-  width: 90%;
-  height: 100%;
-  padding: 0 80px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
-`;
-const Container = styled.div`
-  width: 100%;
-  height: 70px;
-  background-color: black;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
